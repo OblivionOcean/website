@@ -1,5 +1,5 @@
-var notyf = new Notyf();
-fetch('https://core.oblivionocean.top/user/auth').then(function (response) {
+const notyf = new Notyf({position: {x: 'right',y: 'top',}});
+fetch('https://core.oblivionocean.top/user/auth',{credentials: "include"}).then(function (response) {
     response.json().then(function (json) {
         if (json.status === true) {
             document.getElementsByClassName('head').style.display = 'block';
@@ -11,7 +11,7 @@ fetch('https://core.oblivionocean.top/user/auth').then(function (response) {
 })
 
 function login() {
-    fetch('https://core.oblivionocean.top/user/login?id='+document.getElementById('login-email').value+'&password='+document.getElementById('login-password').value).then(function (response) {
+    fetch('https://core.oblivionocean.top/user/login?id='+document.getElementById('login-email').value+'&password='+document.getElementById('login-password').value,{credentials: "include"}).then(function (response) {
         response.json().then(function (json) {
             if (json.status === true) {
                 notyf.success(json.msg);
