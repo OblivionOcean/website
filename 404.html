@@ -13,9 +13,29 @@
     <link href="/css/css.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="preload" href="/tff/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
 </head>
 <body>
+<cover style="display: none;">
+    <login>
+        <svg class="btn--close" onclick="document.getElementsByTagName('cover')[0].style.display='none';"
+             t="1662250512559" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3129"
+             width="200" height="200" style="">
+            <path d="M504.224 470.288l207.84-207.84a16 16 0 0 1 22.608 0l11.328 11.328a16 16 0 0 1 0 22.624l-207.84 207.824 207.84 207.84a16 16 0 0 1 0 22.608l-11.328 11.328a16 16 0 0 1-22.624 0l-207.824-207.84-207.84 207.84a16 16 0 0 1-22.608 0l-11.328-11.328a16 16 0 0 1 0-22.624l207.84-207.824-207.84-207.84a16 16 0 0 1 0-22.608l11.328-11.328a16 16 0 0 1 22.624 0l207.824 207.84z"
+                  p-id="3130"></path>
+        </svg>
+        <h2 style="
+    margin: 30px;
+    margin-bottom: 10px;
+">登录</h2>
+        <p style="
+    margin-left: 30px;
+">没有账户？<a href="/logon">点击注册</a></p><input type="email" id="login-email" placeholder="用户ID/邮箱">
+        <input type="password" id="login-password" placeholder="密码">
+        <button onclick="login();">登录</button>
+    </login>
+</cover>
 <header class="header">
     <i class="fas fa-ellipsis-h" id="ellipsis" onclick="nav();"></i>
     <div class="nav" id="nav">
@@ -27,8 +47,8 @@
         </a>
     </div>
     <div class="user">
-        <a href="/login" class="login-btn">登录</a>
-        <img class="head" src="/img/logo.jpg">
+        <a onclick="document.getElementsByTagName('cover')[0].style.display='block';" class="login-btn">登录</a>
+        <img class="head" src="/img/logo.jpg" style="display: none;" />
     </div>
 </header>
 <main class="main">
@@ -100,10 +120,16 @@
         if (i==0){
             clearInterval(a);
             document.getElementById('Text').innerHTML = "正在跳出！！！"
-            window.history.back(-1);
+            if (document.referrer) {
+                window.history.back(-1);
+            } else {
+                window.location.href='/'
+            }
         }
     },1000)
 </script>
 <script src="/js/limit.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<script src="/js/login.js"></script>
 </body>
 </html>

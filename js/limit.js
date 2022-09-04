@@ -8,6 +8,9 @@ var limit={
     },
     dev: function () {
         this.header(true);
+    },
+    ok: function () {
+        document.getElementsByTagName('body')[0].style.display = 'block';
     }
 }
 
@@ -26,4 +29,6 @@ window.onresize=function(){
     }
 };
 
+
+limit.ok();
 limit.dev();

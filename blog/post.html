@@ -32,19 +32,6 @@
     </div>
 </header>
 <main class="main">
-    <div class="row postlist">
-        <a class="card">
-            <div class="text">
-                <h2>中文</h2><p>hihihijhihihihihihihihihihihihihihihihihihihihih</p>
-            </div>
-            <div class="info">
-                <i class="fas fa-tags"> 200</i>
-                <i class="fas fa-th-large"> 200</i>
-                <i class="fas fa-eye"> 200</i>
-                <i class="fas fa-heart"> 200</i>
-            </div>
-        </a>
-    </div>
 </main>
 <footer>
     <div style="text-align: left;">
@@ -76,7 +63,7 @@
 <!-- 包括所有已编译的插件 -->
 <script src="/js/bootstrap.min.js"></script>
 <style>
-    .postlist {
+    .post {
         width: calc(100% - 40px);
         display: inline-block;
         margin: 20px;
@@ -86,51 +73,70 @@
         border-radius: 5px;
         min-width: 310px;
         user-select: none;
+        min-height: 200px;
     }
 
-    .postlist > .card {
-        height: 150px;
-        padding: 10px;
-        text-decoration: none;
-        text-overflow: ellipsis;
-        color: black;
-    }
-
-    .postlist > .card > .text {
-        height: 95%;
-        width: 100%;
-    }
-
-    .postlist > .card > .info {
-        color: #8f8f8f;
-        font-size: 12px;
-    }
-
-    .postlist > .card > .info > * {
-        margin: 5px;
-    }
-
-    @media (max-width: 425px)  {
-        main{
+    @media (max-width: 425px) {
+        main {
             height: 80%;
             width: 100%;
         }
     }
+
+    a {
+        color: #009ad6;
+        cursor: pointer;
+        text-decoration: none;
+    }
 </style>
-<script>
-    var i = 10;
-    document.getElementById('time').innerHTML = i;
-    i--;
-    a=setInterval(function() {
-        document.getElementById('time').innerHTML = i;
-        i--;
-        if (i==0){
-            clearInterval(a);
-            document.getElementById('Text').innerHTML = "正在跳出！！！"
-            window.history.back(-1);
-        }
-    },1000)
-</script>
 <script src="/js/limit.js"></script>
 </body>
+<script>
+    // url参数获取
+    function getQueryVariable(variable,err)
+    {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(err);
+    }
+    fetch('https://core.oblivionocean.top/post/get?pid='+getQueryVariable('pid',0)).then(function (res) {
+        res.json().then(function(json) {
+            if (json.status == true) {
+                document.getElementsByClassName('main')[0].innerHTML = `<div class="row post">
+        <haeder><h2>${json.data.title}</h2>
+            <hr style="border-radius: 5px;margin: 3px;">
+            <div class="info" style="
+            font-size: 10px;
+            color: #7a7a7a;
+            margin: 5px;">
+                <i class="fas fa-tags"> ${json.data.tags}</i>
+                <i class="fas fa-th-large"> ${json.data.category}</i>
+                <!--<i class="fas fa-eye"> 200</i>
+                <i class="fas fa-heart"> 200</i>-->
+            </div>
+        </haeder>
+        <main style="margin: 10px;width: calc(100% - 20px);">${json.data.text}</main>
+        <div class="cc"
+             style="display: flex;width: calc(100% - 20px);height: 150px;background: #c7c7c775;margin: 10px;border-radius: 5px;">
+            <i class="fab fa-creative-commons" style="
+    font-size: 40px;
+    margin-top: 55px;
+    position: fixed;
+"></i>
+            <p style="margin-top: 30px;margin-left: 50px;">文本永久链接:<a href="${window.location.href}">${window.location.href}</a><br>请遵守<a target="_blank" rel="noopener"
+                                                                                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享
+                4.0 国际 (CC BY-NC-SA 4.0) 协议</a><br><i class="fab fa-creative-commons-by"></i><i
+                    class="fab fa-creative-commons-nc"></i><i class="fab fa-creative-commons-sa"></i></p>
+        </div>
+    </div>`
+            } else {
+                window.location.href = '/404.html';
+            }
+        })
+    })
+</script>
 </html>

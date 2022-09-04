@@ -2,6 +2,7 @@
 body {
     background-color: #d7d7d7;
     text-decoration: none;
+    display: none;
 }
 
 .card-tags {
@@ -220,4 +221,8 @@ login > button {
     border-radius: 5px;
     padding: 3px;
     color: white;
+}
+
+.notyf {
+    z-index: 9999999999999999999999999999999999;
 }

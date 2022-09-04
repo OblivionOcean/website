@@ -13,37 +13,46 @@
     <link href="/css/css.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="preload" href="/tff/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
 </head>
 <body>
+<cover style="display: none;">
+    <login>
+        <svg class="btn--close" onclick="document.getElementsByTagName('cover')[0].style.display='none';"
+             t="1662250512559" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3129"
+             width="200" height="200" style="">
+            <path d="M504.224 470.288l207.84-207.84a16 16 0 0 1 22.608 0l11.328 11.328a16 16 0 0 1 0 22.624l-207.84 207.824 207.84 207.84a16 16 0 0 1 0 22.608l-11.328 11.328a16 16 0 0 1-22.624 0l-207.824-207.84-207.84 207.84a16 16 0 0 1-22.608 0l-11.328-11.328a16 16 0 0 1 0-22.624l207.84-207.824-207.84-207.84a16 16 0 0 1 0-22.608l11.328-11.328a16 16 0 0 1 22.624 0l207.824 207.84z"
+                  p-id="3130"></path>
+        </svg>
+        <h2 style="
+    margin: 30px;
+    margin-bottom: 10px;
+">登录</h2>
+        <p style="
+    margin-left: 30px;
+">没有账户？<a href="/logon">点击注册</a></p><input type="email" id="login-email" placeholder="用户ID/邮箱">
+        <input type="password" id="login-password" placeholder="密码">
+        <button onclick="login();">登录</button>
+    </login>
+</cover>
 <header class="header">
     <i class="fas fa-ellipsis-h" id="ellipsis" onclick="nav();"></i>
     <div class="nav" id="nav">
         <a class="botton" href="/">
             <i class="fa fa-home"> 主页</i>
         </a>
-        <a class="botton" href="/blog">
+        <a class="botton" href="/blog/">
             <i class="fas fa-blog"> 博客</i>
         </a>
     </div>
     <div class="user">
-        <a href="/login" class="login-btn">登录</a>
-        <img class="head" src="/img/logo.jpg">
+        <a onclick="document.getElementsByTagName('cover')[0].style.display='block';" class="login-btn">登录</a>
+        <img class="head" src="/img/logo.jpg" style="display: none;" />
     </div>
 </header>
 <main class="main">
-        <div class="row postlist">
-            <a class="card">
-                <div class="text">
-                <h2>中文</h2><p>hihihijhihihihihihihihihihihihihihihihihihihihih</p>
-                </div>
-                <div class="info">
-                    <i class="fas fa-tags"> 200</i>
-                    <i class="fas fa-th-large"> 200</i>
-                    <i class="fas fa-eye"> 200</i>
-                    <i class="fas fa-heart"> 200</i>
-                </div>
-            </a>
+        <div class="row postlist" id="postlist">
         </div>
 </main>
 <footer>
@@ -91,6 +100,7 @@
     .postlist > .card {
         height: 150px;
         padding: 10px;
+        margin-bottom: 10px;
         text-decoration: none;
         text-overflow: ellipsis;
         color: black;
@@ -117,20 +127,28 @@
         }
     }
 </style>
-<script>
-    var i = 10;
-    document.getElementById('time').innerHTML = i;
-    i--;
-    a=setInterval(function() {
-        document.getElementById('time').innerHTML = i;
-        i--;
-        if (i==0){
-            clearInterval(a);
-            document.getElementById('Text').innerHTML = "正在跳出！！！"
-            window.history.back(-1);
-        }
-    },1000)
-</script>
 <script src="/js/limit.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<script src="/js/login.js"></script>
+<script>
+    fetch('https://core.oblivionocean.top/post/getlist').then(function(response) {
+        response.json().then(function(responseJSON){
+            if (responseJSON.status === true){
+                for (var i = 0; i < responseJSON.data.length; i++) {
+                    document.getElementById('postlist').innerHTML += `<a class="card" href="/blog/post.html?pid=${responseJSON.data[i].pid}">
+                <div class="text">
+                    <h2>${responseJSON.data[i].title}</h2><p>${responseJSON.data[i].text}</p>
+                </div>
+                <div class="info">
+                    <i class="fas fa-tags"> ${responseJSON.data[i].tags.join(',')}</i>
+                    <i class="fas fa-th-large"> ${responseJSON.data[i].category.join(',')}</i>
+                    <!--<i class="fas fa-eye"> 200</i>
+                    <i class="fas fa-heart"> 200</i>-->
+                </div>
+            </a>`}
+            }
+        })
+    })
+</script>
 </body>
 </html>
