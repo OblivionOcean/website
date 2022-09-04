@@ -2,9 +2,9 @@ const notyf = new Notyf({position: {x: 'right',y: 'top',}});
 fetch('https://core.oblivionocean.top/user/auth',{credentials: "include"}).then(function (response) {
     response.json().then(function (json) {
         if (json.status === true) {
-            document.getElementsByClassName('head').style.display = 'block';
+            document.getElementsByClassName('head')[0].style.display = 'block';
             if (json.avatar) {
-                document.getElementsByClassName('head').src = json.avatar;
+                document.getElementsByClassName('head')[0].src = json.avatar;
             }
         }
     })
