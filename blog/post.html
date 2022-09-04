@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>玄云海 - 文章列表</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,
+                                     initial-scale=1.0,
+                                     maximum-scale=1.0,
+                                     user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.jpg">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/css.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="preload" href="/tff/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+</head>
+<body>
+<header class="header">
+    <i class="fas fa-ellipsis-h" id="ellipsis" onclick="nav();"></i>
+    <div class="nav" id="nav">
+        <a class="botton" href="/">
+            <i class="fa fa-home"> 主页</i>
+        </a>
+        <a class="botton" href="/blog">
+            <i class="fas fa-blog"> 博客</i>
+        </a>
+    </div>
+    <div class="user">
+        <a href="/login" class="login-btn">登录</a>
+        <img class="head" src="/img/logo.jpg">
+    </div>
+</header>
+<main class="main">
+    <div class="row postlist">
+        <a class="card">
+            <div class="text">
+                <h2>中文</h2><p>hihihijhihihihihihihihihihihihihihihihihihihihih</p>
+            </div>
+            <div class="info">
+                <i class="fas fa-tags"> 200</i>
+                <i class="fas fa-th-large"> 200</i>
+                <i class="fas fa-eye"> 200</i>
+                <i class="fas fa-heart"> 200</i>
+            </div>
+        </a>
+    </div>
+</main>
+<footer>
+    <div style="text-align: left;">
+        <h4>加入我们</h4>
+        <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=JYWF6elu">QQ群申请</a>
+        <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=JYWF6elu">填写表单</a>
+    </div>
+    <div class="share-box">
+        <a href="mailto:zzx0402zzx@foxmail.com">
+            <img src="/img/mail.svg">
+        </a>
+    </div>
+</footer>
+<div style="background-color: #00335e;width: 100%;padding: 0.5em;">
+    <p style="text-align: center;color: white;margin: auto;">Copyright ©
+        <script>
+            let data = new Date();
+            if (data.getFullYear() == 2022) {
+                document.write(data.getFullYear());
+            } else {
+                document.write('2022-' + data.getFullYear());
+            }
+        </script>
+        玄云海 版权所有
+    </p>
+</div>
+<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- 包括所有已编译的插件 -->
+<script src="/js/bootstrap.min.js"></script>
+<style>
+    .postlist {
+        width: calc(100% - 40px);
+        display: inline-block;
+        margin: 20px;
+        margin-top: 80px !important;
+        padding: 10px;
+        background-color: white;
+        border-radius: 5px;
+        min-width: 310px;
+        user-select: none;
+    }
+
+    .postlist > .card {
+        height: 150px;
+        padding: 10px;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        color: black;
+    }
+
+    .postlist > .card > .text {
+        height: 95%;
+        width: 100%;
+    }
+
+    .postlist > .card > .info {
+        color: #8f8f8f;
+        font-size: 12px;
+    }
+
+    .postlist > .card > .info > * {
+        margin: 5px;
+    }
+
+    @media (max-width: 425px)  {
+        main{
+            height: 80%;
+            width: 100%;
+        }
+    }
+</style>
+<script>
+    var i = 10;
+    document.getElementById('time').innerHTML = i;
+    i--;
+    a=setInterval(function() {
+        document.getElementById('time').innerHTML = i;
+        i--;
+        if (i==0){
+            clearInterval(a);
+            document.getElementById('Text').innerHTML = "正在跳出！！！"
+            window.history.back(-1);
+        }
+    },1000)
+</script>
+<script src="/js/limit.js"></script>
+</body>
+</html>
