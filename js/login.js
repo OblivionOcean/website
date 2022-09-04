@@ -3,7 +3,7 @@ fetch('https://core.oblivionocean.top/user/auth',{credentials: "include"}).then(
     response.json().then(function (json) {
         if (json.status === true) {
             document.getElementsByClassName('head')[0].style.display = 'block';
-            if (json.avatar) {
+            if (json.data.avatar) {
                 document.getElementsByClassName('head')[0].src = json.data.avatar;
             }
         }
