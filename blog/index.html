@@ -131,7 +131,7 @@
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script src="/js/login.js"></script>
 <script>
-    fetch('https://core.oblivionocean.top/post/getlist').then(function(response) {
+    fetch('https://core.oblivionocean.top/blog/getlist').then(function(response) {
         response.json().then(function(responseJSON){
             if (responseJSON.status === true){
                 for (var i = 0; i < responseJSON.data.length; i++) {
@@ -142,8 +142,8 @@
                 <div class="info">
                     <i class="fas fa-tags"> ${responseJSON.data[i].tags.join(',')}</i>
                     <i class="fas fa-th-large"> ${responseJSON.data[i].category.join(',')}</i>
-                    <!--<i class="fas fa-eye"> 200</i>
-                    <i class="fas fa-heart"> 200</i>-->
+                    <i class="fas fa-eye"> ${responseJSON.data.tags}</i>
+                    <!--<i class="fas fa-heart"> 200</i>-->
                 </div>
             </a>`}
             }

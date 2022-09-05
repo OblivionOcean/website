@@ -13,7 +13,6 @@
     <link href="/css/css.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="preload" href="/tff/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-
 </head>
 <body>
 <header class="header">
@@ -92,18 +91,20 @@
 </body>
 <script>
     // url参数获取
-    function getQueryVariable(variable,err)
-    {
+    function getQueryVariable(variable, err) {
         var query = window.location.search.substring(1);
         var vars = query.split("&");
-        for (var i=0;i<vars.length;i++) {
+        for (var i = 0; i < vars.length; i++) {
             var pair = vars[i].split("=");
-            if(pair[0] == variable){return pair[1];}
+            if (pair[0] == variable) {
+                return pair[1];
+            }
         }
-        return(err);
+        return (err);
     }
-    fetch('https://core.oblivionocean.top/post/get?pid='+getQueryVariable('pid',0)).then(function (res) {
-        res.json().then(function(json) {
+
+    fetch('https://core.oblivionocean.top/blog/get?pid=' + getQueryVariable('pid', 0)).then(function (res) {
+        res.json().then(function (json) {
             if (json.status == true) {
                 document.getElementsByClassName('main')[0].innerHTML = `<div class="row post">
         <haeder><h2>${json.data.title}</h2>
@@ -112,10 +113,11 @@
             font-size: 10px;
             color: #7a7a7a;
             margin: 5px;">
+                <img src="" alt="${json.data.pid}" class="writer-avater" style="width: 50px; height:50px;border-radius: 100%;">
                 <i class="fas fa-tags"> ${json.data.tags}</i>
                 <i class="fas fa-th-large"> ${json.data.category}</i>
-                <!--<i class="fas fa-eye"> 200</i>
-                <i class="fas fa-heart"> 200</i>-->
+                <i class="fas fa-eye"> ${json.data.look}</i>
+                <!--<i class="fas fa-heart"> 200</i>-->
             </div>
         </haeder>
         <main style="margin: 10px;width: calc(100% - 20px);">${json.data.text}</main>
