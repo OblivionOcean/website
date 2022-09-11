@@ -66,7 +66,30 @@ var page = {
             <i class="fas fa-sign-out-alt"> 退出</i>
         </a>
     </div>
-</header>` + document.getElementsByTagName('body')[0].innerHTML;
+</header>` + document.getElementsByTagName('body')[0].innerHTML+`<footer>
+    <div style="text-align: left;">
+        <h4>加入我们</h4>
+        <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=JYWF6elu">QQ群申请</a>
+        <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=JYWF6elu">填写表单</a>
+    </div>
+    <div class="share-box">
+        <a href="mailto:talkto@oblivionocean.top">
+            <img src="/img/mail.svg">
+        </a>
+    </div>
+</footer><div style="background-color: #00335e;width: 100%;padding: 0.5em;">
+    <p style="text-align: center;color: white;margin: auto;">Copyright ©
+        <script>
+            let data = new Date();
+            if (data.getFullYear() == 2022) {
+                document.write(data.getFullYear());
+            } else {
+                document.write('2022-' + data.getFullYear());
+            }
+        </script>
+        玄云海 版权所有
+    </p>
+</div>`;
         auth();
     }
 }
