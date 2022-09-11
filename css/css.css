@@ -50,6 +50,18 @@ header > .nav > .botton {
     display: inline-block;
 }
 
+header > .user-nav > .botton {
+    background-color: white;
+    height: 100%;
+    color: rgba(82, 82, 82, 0.99);
+    padding: 10px;
+    text-align: center;
+    width: auto;
+    border-radius: 5px;
+    display: inline-block;
+    width: 100%;
+}
+
 header > .user > a.login-btn {
     text-decoration: none;
     z-index: 1;
@@ -90,6 +102,26 @@ header > .nav > .botton > * {
     position: relative;
     top: 50%;
     transform: translate(0, -70%);
+}
+
+header > .user-nav > .botton > * {
+    position: relative;
+    top: 50%;
+    transform: translate(0, 0%);
+}
+
+header > .user-nav {
+    position: absolute;
+    top: 70px;
+    right: 5px;
+    height: auto;
+    display: none;
+    width: 120px;
+    padding: 5px;
+    background: white;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0 0 32px 0 rgb(31 38 135 / 20%);
 }
 
 #ellipsis {
@@ -223,6 +255,6 @@ login > button {
     color: white;
 }
 
-.notyf {
-    z-index: 9999999999999999999999999999999999;
+.notyf, .notyf-announcer {
+    z-index: 9999999999999999999999999999999999 !important;
 }

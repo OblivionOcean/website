@@ -13,23 +13,9 @@
     <link href="/css/css.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="preload" href="/tff/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 </head>
 <body>
-<header class="header">
-    <i class="fas fa-ellipsis-h" id="ellipsis" onclick="nav();"></i>
-    <div class="nav" id="nav">
-        <a class="botton" href="/">
-            <i class="fa fa-home"> 主页</i>
-        </a>
-        <a class="botton" href="/blog">
-            <i class="fas fa-blog"> 博客</i>
-        </a>
-    </div>
-    <div class="user">
-        <a href="/login" class="login-btn">登录</a>
-        <img class="head" src="/img/logo.jpg">
-    </div>
-</header>
 <main class="main">
 </main>
 <footer>
@@ -61,6 +47,9 @@
 <script src="https://code.jquery.com/jquery.js"></script>
 <!-- 包括所有已编译的插件 -->
 <script src="/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/nav.js"></script>
 <style>
     .post {
         width: calc(100% - 40px);
@@ -87,8 +76,6 @@
         text-decoration: none;
     }
 </style>
-<script src="/js/limit.js"></script>
-</body>
 <script>
     // url参数获取
     function getQueryVariable(variable, err) {
@@ -113,10 +100,11 @@
             font-size: 10px;
             color: #7a7a7a;
             margin: 5px;">
-                <img src="" alt="${json.data.pid}" class="writer-avater" style="width: 50px; height:50px;border-radius: 100%;">
+                <img src="${json.data.avatar}" alt="${json.data.uid}" class="writer-avater" style="width: 25px; height:25px;border-radius: 100%;">
                 <i class="fas fa-tags"> ${json.data.tags}</i>
                 <i class="fas fa-th-large"> ${json.data.category}</i>
                 <i class="fas fa-eye"> ${json.data.look}</i>
+                <i class="far fa-clock">${new Date(Number(json.data.pid)).toLocaleDateString().replace(/\\/g, "-") + " " + new Date(Number(json.data.pid)).toTimeString().substr(0, 8)}</i>
                 <!--<i class="fas fa-heart"> 200</i>-->
             </div>
         </haeder>
@@ -134,10 +122,15 @@
                     class="fab fa-creative-commons-nc"></i><i class="fab fa-creative-commons-sa"></i></p>
         </div>
     </div>`
+                page.ok();
             } else {
                 window.location.href = '/404.html';
             }
+        }).catch(function (error){
+            page.ok();
+            print_error(error,document.getElementsByClassName("main"[0]));
         })
     })
 </script>
+</body>
 </html>

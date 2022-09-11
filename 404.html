@@ -17,40 +17,6 @@
 
 </head>
 <body>
-<cover style="display: none;">
-    <login>
-        <svg class="btn--close" onclick="document.getElementsByTagName('cover')[0].style.display='none';"
-             t="1662250512559" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3129"
-             width="200" height="200" style="">
-            <path d="M504.224 470.288l207.84-207.84a16 16 0 0 1 22.608 0l11.328 11.328a16 16 0 0 1 0 22.624l-207.84 207.824 207.84 207.84a16 16 0 0 1 0 22.608l-11.328 11.328a16 16 0 0 1-22.624 0l-207.824-207.84-207.84 207.84a16 16 0 0 1-22.608 0l-11.328-11.328a16 16 0 0 1 0-22.624l207.84-207.824-207.84-207.84a16 16 0 0 1 0-22.608l11.328-11.328a16 16 0 0 1 22.624 0l207.824 207.84z"
-                  p-id="3130"></path>
-        </svg>
-        <h2 style="
-    margin: 30px;
-    margin-bottom: 10px;
-">登录</h2>
-        <p style="
-    margin-left: 30px;
-">没有账户？<a href="/logon">点击注册</a></p><input type="email" id="login-email" placeholder="用户ID/邮箱">
-        <input type="password" id="login-password" placeholder="密码">
-        <button onclick="login();">登录</button>
-    </login>
-</cover>
-<header class="header">
-    <i class="fas fa-ellipsis-h" id="ellipsis" onclick="nav();"></i>
-    <div class="nav" id="nav">
-        <a class="botton" href="/">
-            <i class="fa fa-home"> 主页</i>
-        </a>
-        <a class="botton" href="/blog/">
-            <i class="fas fa-blog"> 博客</i>
-        </a>
-    </div>
-    <div class="user">
-        <a onclick="document.getElementsByTagName('cover')[0].style.display='block';" class="login-btn">登录</a>
-        <img class="head" src="/img/logo.jpg" style="display: none;" />
-    </div>
-</header>
 <main class="main">
         <h1>404</h1>
         <p id="Text">哎呀，你走丢了，<span id="time"></span>秒后将飘出这片神秘海洋！</p>
@@ -110,7 +76,11 @@
         }
     }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/nav.js"></script>
 <script>
+    page.ok();
     var i = 10;
     document.getElementById('time').innerHTML = i;
     i--;
@@ -128,8 +98,5 @@
         }
     },1000)
 </script>
-<script src="/js/limit.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-<script src="/js/login.js"></script>
 </body>
 </html>
