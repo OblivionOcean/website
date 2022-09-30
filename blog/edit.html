@@ -267,6 +267,7 @@
     if (getQueryVariable('pid', 0) != 0) {
         fetch('https://core.oblivionocean.top/blog/get?pid=' + getQueryVariable('pid', 0)).then(function (res) {
             res.json().then(function (json) {
+                console.log(json);
                 if (json.status == true) {
                     document.getElementsByClassName("md-input")[0].value = json.data.text;
                     document.getElementsByName('title')[0].value = json.data.title;
@@ -318,7 +319,7 @@
 
     function uppost() {
             pid='&pid=' + getQueryVariable('pid', 0)
-            fetch('https://core.oblivionocean.top/blog/set?title='+document.getElementById('title').value+'&tags='+tags.join(',')+'&categorys='+categorys+'&text'+deURIComponent(document.getElementsByClassName("md-input")[0].value)+pid).then(function (res) {
+            fetch('https://core.oblivionocean.top/blog/set?title='+document.getElementById('title').value+'&tags='+tags.join(',')+'&categorys='+categorys+'&text'+decodeURIComponent(document.getElementsByClassName("md-input")[0].value)+pid).then(function (res) {
                 res.json().then(function (json) {
                     if (json.status == true) {
                         alert(json.msg);
