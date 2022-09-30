@@ -270,11 +270,11 @@
                 if (json.status == true) {
                     document.getElementsByClassName("md-input")[0].value = json.data.text;
                     document.getElementsByName('title')[0].value = json.data.title;
-                    tags = json.data.tags.sqlit(',');
+                    tags = json.data.tags
                     for (let i = 0; i < tags.length; i++) {
                         document.getElementById('tag-container').innerHTML += `<span class="px-1 py-0.5 text-xs select-none d-inline-block  rounded-pill mr-1 mb-0.5" style="margin: 5px;color: rgb(255, 255, 255); background-color: rgb(52, 152, 219);" onclick="del_tag(this);">${tags[i]}</span>`
                     }
-                    categorys = json.data.tags.sqlit(',');
+                    categorys = json.data.tags;
                     for (let i = 0; i < categorys.length; i++) {
                         document.getElementById('category-container').innerHTML += `<span class="px-1 py-0.5 text-xs select-none d-inline-block  rounded-pill mr-1 mb-0.5" style="margin: 5px;color: rgb(255, 255, 255); background-color: rgb(52, 152, 219);" onclick="del_category(this);">${tags[i]}</span>`
                     }
