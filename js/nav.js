@@ -1,6 +1,6 @@
+setInterval(console.log = function () {
+}, 3000);
 
-
-setInterval(console.log= function(){},3000);
 function print_err(err, dom) {
     dom.innerHTML = `
 <style>
@@ -24,6 +24,12 @@ function print_err(err, dom) {
 
 var page = {
     ok: function () {
+        let data = new Date();
+        if (data.getFullYear() == 2022) {
+            Copyrigh_time = data.getFullYear();
+        } else {
+            Copyrigh_time = '2022-' + data.getFullYear();
+        }
         document.getElementsByTagName('body')[0].style.display = 'block';
         document.getElementsByTagName('body')[0].innerHTML = `<cover style="display: none;">
     <login>
@@ -39,8 +45,8 @@ var page = {
 ">登录</h2>
         <p style="
     margin-left: 30px;
-">没有账户？<a href="/logon">点击注册</a></p><input type="email" id="login-email" placeholder="用户ID/邮箱">
-        <input type="password" id="login-password" placeholder="密码">
+">没有账户？<a href="/logon">点击注册</a></p><input class="form-control" type="email" id="login-email" placeholder="用户ID/邮箱">
+        <input class="form-control" type="password" id="login-password" placeholder="密码">
         <button onclick="login();">登录</button>
     </login>
 </cover>
@@ -66,7 +72,7 @@ var page = {
             <i class="fas fa-sign-out-alt"> 退出</i>
         </a>
     </div>
-</header>` + document.getElementsByTagName('body')[0].innerHTML+`<footer>
+</header>` + document.getElementsByTagName('body')[0].innerHTML + `<footer>
     <div style="text-align: left;">
         <h4>加入我们</h4>
         <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=JYWF6elu">QQ群申请</a>
@@ -79,14 +85,7 @@ var page = {
     </div>
 </footer><div style="background-color: #00335e;width: 100%;padding: 0.5em;">
     <p style="text-align: center;color: white;margin: auto;">Copyright ©
-        <script>
-            let data = new Date();
-            if (data.getFullYear() == 2022) {
-                document.write(data.getFullYear());
-            } else {
-                document.write('2022-' + data.getFullYear());
-            }
-        </script>
+           ${Copyrigh_time}
         玄云海 版权所有
     </p>
 </div>`;
@@ -95,27 +94,31 @@ var page = {
 }
 
 function nav() {
-    if (document.getElementById('nav').style.display == 'inline-block') {
-        document.getElementById('nav').style.display = 'none';
-    } else {
-        document.getElementById('nav').style.display = 'inline-block';
-        document.getElementById('user-nav').style.display = 'none';
+    if (document.getElementById('nav').style) {
+        if (document.getElementById('nav').style.display == 'inline-block') {
+            document.getElementById('nav').style.display = 'none';
+        } else {
+            document.getElementById('nav').style.display = 'inline-block';
+            document.getElementById('user-nav').style.display = 'none';
+        }
     }
 }
 
 window.onresize = function () {
-    if (document.getElementById('nav').style.top == '70px') {
+    if (document.getElementById('nav').style.display && document.getElementById('nav').style.top == '70px') {
         document.getElementById('nav').style.display = 'inline-block';
     }
 };
 
 function user_nav() {
-    if (document.getElementById('user-nav').style.display == 'inline-block') {
-        document.getElementById('user-nav').style.display = 'none';
-    } else {
-        document.getElementById('user-nav').style.display = 'inline-block';
-        if (document.getElementById('nav').style.top == '70px') {
-            document.getElementById('nav').style.display = 'none';
+    if (document.getElementById('user-nav').style) {
+        if (document.getElementById('user-nav').style.display == 'inline-block') {
+            document.getElementById('user-nav').style.display = 'none';
+        } else {
+            document.getElementById('user-nav').style.display = 'inline-block';
+            if (document.getElementById('nav').style.top == '70px') {
+                document.getElementById('nav').style.display = 'none';
+            }
         }
     }
 }

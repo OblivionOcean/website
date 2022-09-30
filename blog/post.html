@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>玄云海 - 文章列表</title>
+    <title>玄云海 - 文章</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,
@@ -25,6 +25,9 @@
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <script src="/js/login.js"></script>
 <script src="/js/nav.js"></script>
+<script src="/js/lute.min.js"></script>
+<script src="/js/highlight.min.js"></script>
+<link rel="stylesheet" href="/css/default.min.css">
 <style>
     .post {
         width: calc(100% - 40px);
@@ -52,6 +55,26 @@
     }
 </style>
 <script>
+    function print_err(err, dom) {
+        dom.innerHTML = `
+<style>
+    .error {
+        width: 100%;
+        border-style: dashed;
+        border-color: red;
+        border-radius: 5px;
+        color: red;
+    }
+    .error>h3, .error>p{
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+</style>
+<div class="error">
+    <h3>报错了!!</h3>
+    <p>` + err + `</p>
+</div>`
+    }
     // url参数获取
     function getQueryVariable(variable, err) {
         var query = window.location.search.substring(1);
@@ -68,6 +91,37 @@
     fetch('https://core.oblivionocean.top/blog/get?pid=' + getQueryVariable('pid', 0)).then(function (res) {
         res.json().then(function (json) {
             if (json.status == true) {
+                // md输入和渲染
+                const lute = Lute.New();
+                const html2MdRenderer = {
+                    renderLinkDest: function (node, entering) {
+                        if (entering) {
+                            console.log('重写 LinkDest 节点', node.__internal_object__.typ, node.TokensStr(), entering);
+                            return [node.TokensStr(), Lute.WalkContinue]
+                        } else {
+                            return ["", Lute.WalkContinue]
+                        }
+                    },
+                    renderBang: function (node, entering) {
+                        if (entering) {
+                            console.log('重写 Bang 节点', node.TokensStr(), entering);
+                            return ["!", Lute.WalkContinue]
+                        } else {
+                            return ["", Lute.WalkContinue]
+                        }
+                    },
+                };
+                lute.SetJSRenderers({
+                    "renderers": {
+                        "HTML2Md": html2MdRenderer,
+                    }
+                });
+                var isIE = !(!document.all);
+                function onMarkdown(it) {
+                    const result = lute.MarkdownStr("", it);
+                    hljs.highlightAll();
+                    return  result;
+                }
                 document.getElementsByClassName('main')[0].innerHTML = `<div class="row post">
         <haeder><h2>${json.data.title}</h2>
             <hr style="border-radius: 5px;margin: 3px;">
@@ -83,7 +137,7 @@
                 <!--<i class="fas fa-heart"> 200</i>-->
             </div>
         </haeder>
-        <main style="margin: 10px;width: calc(100% - 20px);">${json.data.text}</main>
+        <main style="margin: 10px;width: calc(100% - 20px);">${onMarkdown(json.data.text)}</main>
         <div class="cc"
              style="display: flex;width: calc(100% - 20px);height: 150px;background: #c7c7c775;margin: 10px;border-radius: 5px;">
             <i class="fab fa-creative-commons" style="
@@ -103,8 +157,11 @@
             }
         }).catch(function (error){
             page.ok();
-            print_error(error,document.getElementsByClassName("main"[0]));
+            print_err(error,document.getElementsByClassName("main")[0]);
         })
+    }).catch(function (error){
+        page.ok();
+        print_err(error,document.getElementsByClassName("main")[0]);
     })
 </script>
 </body>
