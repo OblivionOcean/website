@@ -323,7 +323,7 @@
         } else {
             pid='';
         }
-            fetch('https://core.oblivionocean.top/blog/set?title='+document.getElementById('title').value+'&tags='+encodeURIComponent(tags.join(','))+'&categorys='+encodeURIComponent(categorys.join(','))+'&text'+encodeURIComponent(document.getElementsByClassName("md-input")[0].value)+pid, {credentials: "include"}).then(function (res) {
+            fetch('https://core.oblivionocean.top/blog/set?title='+document.getElementById('title').value+'&tags='+encodeURIComponent(tags.join(','))+'&categorys='+encodeURIComponent(categorys.join(','))+'&text='+encodeURIComponent(document.getElementsByClassName("md-input")[0].value)+pid, {credentials: "include"}).then(function (res) {
                 res.json().then(function (json) {
                     if (json.status == true) {
                         alert(json.msg);
