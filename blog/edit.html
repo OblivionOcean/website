@@ -183,7 +183,7 @@
                 <label class="form-control-label"><i class=""></i> 头图</label>
                 <input type="text" name="title" class="head" placeholder="头图" id="headimg" value=""></div>-->
         </div>
-            <button class="btn" style="width: 100%;background-color: #33c4ff;color: white" onclick="uppost">发布</button>
+            <button class="btn" style="width: 100%;background-color: #33c4ff;color: white" onclick="uppost()">发布</button>
         </div>
 </main>
 <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
@@ -220,7 +220,7 @@
         }
 
         .main {
-            height: 160% !important;
+            height: 900px !important;
         }
     }
 </style>
@@ -265,20 +265,21 @@
     var tags = [];
     var categorys = [];
     if (getQueryVariable('pid', 0) != 0) {
-        fetch('https://core.oblivionocean.top/blog/get?pid=' + getQueryVariable('pid', 0)).then(function (res) {
+        fetch('https://core.oblivionocean.top/blog/get?pid=' + getQueryVariable('pid', 0), {credentials: "include"}).then(function (res) {
             res.json().then(function (json) {
+                console.log(json);
                 if (json.status == true) {
+                    page.ok();
                     document.getElementsByClassName("md-input")[0].value = json.data.text;
                     document.getElementsByName('title')[0].value = json.data.title;
-                    tags = json.data.tags.sqlit(',');
+                    tags = json.data.tags
                     for (let i = 0; i < tags.length; i++) {
                         document.getElementById('tag-container').innerHTML += `<span class="px-1 py-0.5 text-xs select-none d-inline-block  rounded-pill mr-1 mb-0.5" style="margin: 5px;color: rgb(255, 255, 255); background-color: rgb(52, 152, 219);" onclick="del_tag(this);">${tags[i]}</span>`
                     }
-                    categorys = json.data.tags.sqlit(',');
+                    categorys = json.data.tags;
                     for (let i = 0; i < categorys.length; i++) {
                         document.getElementById('category-container').innerHTML += `<span class="px-1 py-0.5 text-xs select-none d-inline-block  rounded-pill mr-1 mb-0.5" style="margin: 5px;color: rgb(255, 255, 255); background-color: rgb(52, 152, 219);" onclick="del_category(this);">${tags[i]}</span>`
                     }
-                    page.ok();
                 } else {
                     window.location.href = '/404.html';
                 }
@@ -317,8 +318,12 @@
     }
 
     function uppost() {
-            pid='&pid=' + getQueryVariable('pid', 0)
-            fetch('https://core.oblivionocean.top/blog/set?title='+document.getElementById('title').value+'&tags='+tags.join(',')+'&categorys='+categorys+'&text'+deURIComponent(document.getElementsByClassName("md-input")[0].value)+pid).then(function (res) {
+        if (getQueryVariable('pid', 0)!=0) {
+            pid = '&pid=' + getQueryVariable('pid', 0);
+        } else {
+            pid='';
+        }
+            fetch('https://core.oblivionocean.top/blog/set?title='+document.getElementById('title').value+'&tags='+encodeURIComponent(tags.join(','))+'&categorys='+encodeURIComponent(categorys.join(','))+'&text'+encodeURIComponent(document.getElementsByClassName("md-input")[0].value)+pid, {credentials: "include"}).then(function (res) {
                 res.json().then(function (json) {
                     if (json.status == true) {
                         alert(json.msg);
