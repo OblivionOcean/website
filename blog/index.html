@@ -75,7 +75,7 @@
     fetch('https://core.oblivionocean.top/blog/getlist').then(function(response) {
         response.json().then(function(responseJSON){
             if (responseJSON.status === true){
-                for (var i = responseJSON.data.length-1; i > 0; i--) {
+                for (var i = responseJSON.data.length-1; i >= 0; i--) {
                     document.getElementById('postlist').innerHTML += `<a class="card" href="/blog/post.html?pid=${responseJSON.data[i].pid}">
                 <div class="text">
                     <h2>${responseJSON.data[i].title}</h2><p>${responseJSON.data[i].text}</p>
