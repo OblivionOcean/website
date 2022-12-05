@@ -14,7 +14,18 @@ function auth() {
 }
 
 function login() {
-    fetch('https://core.oblivionocean.top/user/login?id=' + document.getElementById('login-email').value + '&password=' + document.getElementById('login-password').value, {credentials: "include"}).then(function (response) {
+    fetch('https://core.oblivionocean.top/user/login', {
+        method: 'POST',
+        body: JSON.stringify({
+            id: document.getElementById('login-email').value,
+            password: document.getElementById('login-password').value
+        }),
+        headers: new Headers({
+            'Content-Type': 'application/json'
+        }),
+        mode:'cors',
+        credentials: "include"
+    }).then(function (response) {
         response.json().then(function (json) {
             if (json.status === true) {
                 alert(json.msg);

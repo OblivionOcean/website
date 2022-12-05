@@ -30,7 +30,8 @@ var page = {
         } else {
             Copyrigh_time = '2022-' + data.getFullYear();
         }
-        document.getElementsByTagName('body')[0].style.display = 'block';
+        document.getElementsByTagName('body')[0].style.visibility = 'visible';
+        document.getElementsByTagName('loading')[0].remove();
         document.getElementsByTagName('body')[0].innerHTML = `<cover style="display: none;">
     <login>
         <svg class="btn--close" onclick="document.getElementsByTagName('cover')[0].style.display='none';"
