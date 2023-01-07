@@ -1,0 +1,15 @@
+name: npm-publish
+on:
+  push:
+    branches: 
+      - main
+jobs:
+  npm-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          repository: website
+          branch: main
