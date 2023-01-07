@@ -1,8 +1,7 @@
-name: npm-publish
+name: push
 on:
   push:
-    branches: 
-      - main
+    branches: ['main']
 jobs:
   npm-publish:
     runs-on: ubuntu-latest
