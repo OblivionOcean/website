@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<%- include(snippet+'head.ejs', {title:'注册 - 玄云海', npm_cdn:npm_cdn, gh_cdn:gh_cdn}); %>
+<body>
+<%- include(snippet+'loading.ejs'); %>
+<%- include(snippet+'cover.ejs'); %>
+<%- include(snippet+'header.ejs'); %>
+<main class="main">
+    <login>
+        <h2>注册</h2>
+        <div class="set-avater"><img class="out-avater" src="/img/logo.jpg"></div>
+        <input id="logon-name" class="form-control" placeholder="昵称" style="display: none;" type="name">
+        <input id="logon-email" class="form-control" placeholder="用户ID/邮箱" type="email">
+        <input id="logon-password" class="form-control" placeholder="密码" type="password">
+        <input id="logon-password-a" class="form-control" placeholder="确认密码" type="password">
+        <button class="logon-btn" onclick="logon();">注册
+        </button>
+    </login>
+</main>
+<%- include(snippet+'footer.ejs'); %>
+<style>
+    .logon-btn {
+        max-width: 400px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin: 30px 0;
+    }
+
+    .out-avater {
+        display: none;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+    }
+
+    .set-avater {
+        width: 60px;
+        height: 60px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin: 30px 0;
+    }
+
+    h2 {
+        margin: 100px;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    login {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer {
+        display: none;
+    }
+
+    login > input {
+        max-width: 460px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin: 10px 0;
+    }
+
+    @media (max-width: 425px) {
+        main {
+            height: 80%;
+            width: 100%;
+        }
+    }
+</style>
+<script>
+    function logon() {
+        if (document.getElementById('logon-password').value === document.getElementById('logon-password-a').value) {
+            fetch('https://core.oblivionocean.top/user/logon', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email: document.getElementById('logon-email').value,
+                        password: document.getElementById('logon-password').value
+                    }),
+                    headers: new Headers({
+                        'Content-Type': 'application/json'
+                    }),
+                    credentials: "include",
+                    mode: 'cors'
+                }
+            ).then(function (response) {
+                response.json().then(function (json) {
+                    alert(json.msg);
+                    if (json.status === true) {
+                        window.location.href = '/';
+                    }
+                })
+            }).catch(function (error) {
+                alert(error);
+            })
+        } else {
+            alert('两次密码不一致！');
+        }
+    }
+
+    page.ok();
+</script>
+</body>
+</html>

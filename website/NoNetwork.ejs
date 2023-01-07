@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<%- include(snippet+'head.ejs', {title:'无法连接 - 玄云海', npm_cdn:npm_cdn, gh_cdn:gh_cdn}); %>
+<body>
+<%- include(snippet+'loading.ejs'); %>
+<%- include(snippet+'cover.ejs'); %>
+<%- include(snippet+'header.ejs'); %>
+<main class="main">
+    <h1>无法连接服务器</h1>
+    <p id="Text">你访问时，服务器没有合理的响应|网络测试结果：<span id="msg"></span></p>
+</main>
+<%- include(snippet+'footer.ejs'); %>
+<style>
+    main {
+        height: 500px;
+        width: 50%;
+        margin: 30px auto;
+        margin-top: 150px !important;
+        background-color: white;
+        text-align: center;
+        border-radius: 10px;
+        display: table;
+    }
+
+    main > h1 {
+        margin-top: 60px;
+        font-weight: bolder;
+    }
+
+    main > p {
+        margin-bottom: 60px;
+    }
+
+    @media (max-width: 425px) {
+        main {
+            height: 80%;
+            width: 100%;
+        }
+    }
+</style>
+<script>
+    myconsole.info('对百度请求，检查网络')
+    fetch('https://www.baidu.com/',{mode:'no-cors'}).then(function(){
+        document.getElementById('msg').innerHTML = '百度可以访问，因此是我们的节点故障，请稍后再试'
+    }).catch(function(){
+        document.getElementById('msg').innerHTML = '百度无法访问，您可以检查网络试试'
+    })
+</script>
+</body>
+</html>

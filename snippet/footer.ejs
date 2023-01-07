@@ -1,0 +1,19 @@
+<footer>
+    <div style="text-align: left;">
+        <h4>加入我们</h4>
+        <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=JYWF6elu">QQ群申请</a>
+        <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=JYWF6elu">填写表单</a>
+    </div>
+    <div class="share-box">
+        <a href="mailto:talkto@oblivionocean.top">
+            <img src="/img/mail.svg">
+        </a>
+    </div>
+</footer>
+<div style="background-color: #00335e;width: 100%;padding: 0.5em;">
+    <p style="text-align: center;color: white;margin: auto;">Copyright ©
+        <%= (new Date().getFullYear() == 2022) ? Copyrigh_time = new Date().getFullYear() : Copyrigh_time = '2022-' + new Date().getFullYear() %>
+        玄云海 版权所有
+    </p>
+</div>
+<%- include('./script.ejs', {npm_cdn:npm_cdn, gh_cdn:gh_cdn}); %>

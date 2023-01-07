@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html>
+<%- include(snippet+'head.ejs', {title:'注册 - 玄云海', npm_cdn:npm_cdn, gh_cdn:gh_cdn}); %>
+<body>
+<%- include(snippet+'loading.ejs'); %>
+<%- include(snippet+'cover.ejs'); %>
+<%- include(snippet+'header.ejs'); %>
+<main class="main" style="display: flex">
+<br>
+    <br>
+    <br>
+    <br><br><br><br><br><br><br>
+    jjjjjjj
+
+</main>
+<%- include(snippet+'footer.ejs'); %>
+<style>
+    .follow > span > svg {
+        display: none;
+    }
+
+    .follow {
+        background: #ffffff;
+        color: #656565;
+        border: 2px solid #656565;
+        border-radius: 5px;
+        white-space: nowrap;
+        text-align: center;
+        width: 80%;
+        position: relative;
+        bottom: -30px;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .follow-btn > span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: 10px;
+    }
+
+    .not-follow {
+        background: #00AEEC;
+        color: white;
+        border-radius: 5px;
+        white-space: nowrap;
+        text-align: center;
+        width: 80%;
+        position: relative;
+        bottom: -30px;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+
+    .post-side-nav > p {
+        font-size: 10px;
+        margin: 0;
+        color: #929292;
+        text-align: center;
+    }
+
+    .post-side-nav > h4 {
+        margin-top: 70px;
+        text-align: center;
+    }
+
+    .post-side-nav > img {
+        height: 100px;
+        box-shadow: 0 0 32px 0 rgb(117 117 117 / 70%);
+        width: 100px;
+        border-radius: 100%;
+        border: 5px solid white;
+        position: relative;
+        top: 50px;
+        left: calc(50% - 50px);
+    }
+
+    .post-side-nav {
+        top: 80px;
+        width: 25%;
+        left: 20px;
+        height: 450px;
+        background-color: white;
+        border-radius: 5px;
+        margin-top: 80px;
+        margin-left: 30px;
+    }
+
+    .post {
+        width: calc(100% - 40px);
+        display: inline-block;
+        margin: 20px;
+        margin-top: 80px !important;
+        padding: 10px;
+        background-color: white;
+        border-radius: 5px;
+        min-width: 310px;
+        min-height: 200px;
+    }
+
+    @media (max-width: 425px) {
+        main {
+            height: 80%;
+        }
+
+        main.main > div {
+            width: 100% !important;
+        }
+
+        main.main > nav {
+            display: none !important;
+        }
+    }
+    main{
+        max-width: 1100px;
+        margin: 90px auto 10px;
+        background: #fff;
+        width: 100%;
+    }
+    a {
+        color: #009ad6;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    img, svg {
+        width: 100%;
+        border-radius: 5px;
+    }
+</style>
+<script>
+</script>
+</body>
+</html>
