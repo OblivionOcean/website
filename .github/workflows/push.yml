@@ -10,7 +10,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.TOKEN }}
-          publish_dir: .
+          publish_dir: ./
           external_repository: Xyh-Bot/website
           publish_branch: main
           exclude_assets: ''
