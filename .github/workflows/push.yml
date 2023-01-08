@@ -1,14 +1,18 @@
-name: push
+name: HexoBlogBuild
 on:
-  push:
-    branches: ['main']
+  - workflow_dispatch
+  - push
 jobs:
-  push:
+  buildstatic:
     runs-on: ubuntu-latest
     steps:
-      - name: GitHub Push
-        uses: ad-m/github-push-action@v0.6.0
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.TOKEN }}
-          repository: Xyh-Bot/website
-          branch: main
+          personal_token: ${{ secrets.TOKEN }}
+          publish_dir: .
+          external_repository: Xyh-Bot/website
+          publish_branch: main
+          exclude_assets: ''
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
