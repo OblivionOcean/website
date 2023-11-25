@@ -3,6 +3,10 @@ body {
     margin: 0;
 }
 
+* {
+    transition: all 0.5s;
+}
+
 body>div.header {
     border-bottom: .1px solid #e6e6e6;
     background: #377DFF;
@@ -35,7 +39,7 @@ body>.main>.slogan {
         height: calc(100% - 70px);
 
         .icon {
-            max-height: calc(100% - 20px);
+            max-height: calc(100% - 100px);
             width: calc(100% - 450px);
         }
 
@@ -60,7 +64,7 @@ body>.main>.slogan {
     }
 }
 
-.main>.slogan>.cards {
+.main>.slogan>._cards>.cards {
     position: absolute;
     bottom: -100px;
     display: flex;
@@ -169,18 +173,21 @@ body>.main>.slogan {
 
             .screenshot {
                 display: flex;
+                justify-content: center;
+                width: 100%;
 
                 .emulation {
                     margin-top: 90px;
                     display: flex;
                     padding-top: 40px;
-                    width: 720px;
                     height: 320px;
                     border-radius: 15px 15px 0px 0px;
                     background: #FFF;
                     box-shadow: 0px -5px 4px 0px rgba(0, 0, 0, 0.25);
                     justify-content: center;
                     position: relative;
+                    max-width: 720px;
+                    width: calc(100% - 40px);
 
                     .camera {
                         border-radius: 50%;
@@ -190,8 +197,8 @@ body>.main>.slogan {
                         position: absolute;
                     }
 
-                    img {
-                        width: 640px;
+                    .screenshot {
+                        width: calc(100% - 40px);
                         height: 320px;
                     }
                 }
@@ -229,4 +236,35 @@ body>.main>.slogan {
     min-height: 150px;
     padding: 30px;
     background-color: #ffb101;
+}
+
+@media (max-width: 645px) {
+    body>.main>.slogan {
+        .main {
+            justify-content: center;
+            flex-direction: column-reverse;
+
+            .text .title {
+                text-align: center;
+            }
+
+            .icon {
+                width: calc(100% - 350px);
+                margin-top: 20px;
+                min-width: 250px;
+            }
+        }
+
+        ._cards { 
+            .cards {
+                width: calc(300vw - 300px);
+                transform: translateX(0px);
+                margin: 0 50px;
+
+                .card {
+                    width: calc(100vw - 100px);
+                }
+            }
+        }
+    }
 }

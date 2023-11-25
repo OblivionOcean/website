@@ -21,9 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 // 滚动
 document.addEventListener('scroll', function (event) {
+    if (document.documentElement.clientWidth <= 640) {
+        return
+    }
     var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
     if (document.querySelector(".show>.second>.content").getBoundingClientRect().top < 0) {
-        document.querySelector(".show>.animation").style.display = "none";return
+        document.querySelector(".show>.animation").style.display = "none"; return
     }
     if (document.querySelector(".show>.second>.content").getBoundingClientRect().top > 70) {
         if (document.querySelector(".show>.first>.content").getBoundingClientRect().top > 70) {
