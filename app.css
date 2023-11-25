@@ -1,0 +1,232 @@
+:root,
+body {
+    margin: 0;
+}
+
+body>div.header {
+    border-bottom: .1px solid #e6e6e6;
+    background: #377DFF;
+    width: 100%;
+    height: 70px;
+    z-index: 99999999999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+body>.main {
+    width: 100%;
+    padding-bottom: 70px;
+}
+
+body>.main>.slogan {
+    z-index: 100;
+    width: 100%;
+    height: 500px;
+    background: #377DFF;
+    position: relative;
+
+    .main {
+        user-select: none;
+        margin-top: 70px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: calc(100% - 70px);
+
+        .icon {
+            max-height: calc(100% - 20px);
+            width: calc(100% - 450px);
+        }
+
+        .text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .title {
+                color: #fff;
+            }
+
+            .btn {
+                padding: 10px;
+                display: block;
+                background-color: #fff;
+                border-radius: 5px;
+                color: #377DFF;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.main>.slogan>.cards {
+    position: absolute;
+    bottom: -100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    height: 150px;
+    width: calc(100% - 80px);
+    user-select: none;
+    margin: 0 40px;
+
+
+    .card {
+        display: flex;
+        padding: 10px;
+        height: calc(100% - 20px);
+        width: calc(100% / 3 - 70px);
+        background-color: #fff;
+        border-radius: 10px;
+        align-items: center;
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.20);
+        overflow: hidden;
+
+        .left {
+            margin-bottom: 5px;
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            width: calc(100% - 60px);
+
+            .title {
+                color: #000;
+                font-size: 20px;
+                font-weight: 700;
+                line-height: normal;
+            }
+
+            .des {
+                color: #7F7F7F;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+        }
+    }
+}
+
+.main>.show {
+    width: 100%;
+
+    .first,
+    .animation,
+    .second {
+        min-height: 890px;
+        background: #F8FAFF;
+        width: 100%;
+        height: calc(100vh + 200px);
+        position: relative;
+        max-height: 1024px;
+
+        .content {
+            overflow: hidden;
+            min-height: 690px;
+            user-select: none;
+            width: 100%;
+            height: calc(100vh - 70px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+
+
+
+            .logo {
+                margin-top: 30px;
+                width: 80px;
+            }
+
+            .title {
+                margin: 5px 0;
+                color: #000;
+                text-align: center;
+                font-family: Istok Web;
+                font-size: 50px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .introduce {
+                color: #000;
+                text-align: center;
+                font-size: 15px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .screenshot {
+                display: flex;
+
+                .emulation {
+                    margin-top: 90px;
+                    display: flex;
+                    padding-top: 40px;
+                    width: 720px;
+                    height: 320px;
+                    border-radius: 15px 15px 0px 0px;
+                    background: #FFF;
+                    box-shadow: 0px -5px 4px 0px rgba(0, 0, 0, 0.25);
+                    justify-content: center;
+                    position: relative;
+
+                    .camera {
+                        border-radius: 50%;
+                        padding: 10px;
+                        background-color: #000;
+                        top: 10px;
+                        position: absolute;
+                    }
+
+                    img {
+                        width: 640px;
+                        height: 320px;
+                    }
+                }
+            }
+        }
+    }
+
+    .animation,
+    .second {
+        transition: all 1s;
+        width: 100%;
+        z-index: 999;
+        height: calc(100vh - 70px);
+        position: fixed;
+        min-height: 0;
+        top: 70px;
+        left: 0;
+
+        .content {
+            height: 100%;
+        }
+    }
+
+    .second {
+        transition: all 0s;
+        position: relative;
+        margin-top: -70px;
+        background: #fff;
+        z-index: 9;
+    }
+}
+
+.footer {
+    width: 100%;
+    min-height: 150px;
+    padding: 30px;
+    background-color: #ffb101;
+}
