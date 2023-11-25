@@ -22,6 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
 // 滚动
 document.addEventListener('scroll', function (event) {
     if (document.documentElement.clientWidth <= 640) {
+        if (document.querySelector(".show>.first>.content").getBoundingClientRect().top < document.documentElement.clientHeight) {
+            document.querySelector(".show>.first>.content>.screenshot").style.transition = "transform 2s"
+            document.querySelector(".show>.first>.content>.screenshot").style.transform = "translate(0px,0px)"
+        } else {
+            document.querySelector(".show>.first>.content>.screenshot").style.transition = "transform 0s"
+            document.querySelector(".show>.first>.content>.screenshot").style.transform = "translate(0px,300px)"
+        }
         return
     }
     var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
