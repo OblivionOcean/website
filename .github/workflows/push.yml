@@ -11,7 +11,7 @@ jobs:
         with:
           personal_token: ${{ secrets.TOKEN }}
           publish_dir: ./
-          external_repository: Xyh-Bot/website
+          external_repository: Fgaoxing/xyh-website
           publish_branch: main
           exclude_assets: ''
           user_name: github-actions[bot]
