@@ -1,10 +1,11 @@
-document.addEventListener("DOMC ontentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     var A = document.querySelectorAll("img");
     for (i in A) A[i].setAttribute && A[i].src != "" && (A[i].setAttribute("lazyload", A[i].src), A[i].src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAANSURBVBhXY2BgYGAAAAAFAAGKM+MAAAAAAElFTkSuQmCC");
     lazyload()
     document.addEventListener("scroll", lazyload)
 })
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOMContentLoaded")
     var A = document.querySelectorAll("img[bsrc]")
     for (let i = 0; i < A.length; i++) {
         fetch(A[i].getAttribute("bsrc")).then(function (r) {
@@ -19,9 +20,71 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 })
-// 滚动
-document.addEventListener('scroll', function (event) {
-    if (document.documentElement.clientWidth <= 640) {
+
+document.addEventListener("DOMContentLoaded", function () {
+    var A = document.querySelectorAll("a.jumpload[ptype]")
+    for (let i = 0; i < A.length; i++) {
+        A[i].onclick = function (e) {
+            var pageInfo = document.querySelector("meta[name=\"ptype\"]").getAttribute("content")
+            var ptype = this.getAttribute("ptype")
+            if (ptype == "post") {
+                fetch(A[i].getAttribute("href")).then(function (r) {
+                    r.text().then(function(b) {
+                        let domparser = new DOMParser();
+                        var doc = domparser.parseFromString(b, "text/html");
+                        if (pageInfo == "home") {
+                            let oldDoc = document.getElementsByClassName("slogan")[0]
+                            oldDoc.classList.add("headimg")
+                            oldDoc.classList.remove("slogan")
+                            oldDoc.innerHTML = doc.getElementsByClassName("headimg")[0].innerHTML
+                            let oldDoc2 = document.getElementsByClassName("show")[0]
+                            oldDoc2.classList.add("post")
+                            oldDoc2.classList.remove("show")
+                            oldDoc2.innerHTML = doc.getElementsByClassName("post")[0].innerHTML
+                        } else {
+                            document.getElementsByClassName("headimg")[0].innerHTML = doc.getElementsByClassName("headimg")[0].innerHTML
+                            document.getElementsByClassName("post")[0].innerHTML = doc.getElementsByClassName("post")[0].innerHTML
+                        }
+                        document.title = doc.title
+                        document.querySelector("meta[name=\"ptype\"]").setAttribute("content", doc.querySelector("meta[name=\"ptype\"]").getAttribute("content"))
+                    }).catch(function(e) {console.log(e);window.location.href == A[i].getAttribute("href")})
+                }).catch(function(e) {console.log(e);window.location.href = A[i].getAttribute("href")})
+            }
+            if (ptype == "home") {
+                fetch(A[i].getAttribute("href")).then(function (r) {
+                    r.text().then(function(b) {
+                        let domparser = new DOMParser();
+                        var doc = domparser.parseFromString(b, "text/html");
+                        if (pageInfo == "post") {
+                            let oldDoc = document.getElementsByClassName("headimg")[0]
+                            oldDoc.classList.add("slogan")
+                            oldDoc.classList.remove("headimg")
+                            oldDoc.innerHTML = doc.getElementsByClassName("slogan")[0].innerHTML
+                            let oldDoc2 = document.getElementsByClassName("post")[0]
+                            oldDoc2.classList.add("show")
+                            oldDoc2.classList.remove("post")
+                            oldDoc2.innerHTML = doc.getElementsByClassName("show")[0].innerHTML
+                        } else {
+                            document.getElementsByClassName("slogan")[0].innerHTML = doc.getElementsByClassName("slogan")[0].innerHTML
+                            document.getElementsByClassName("show")[0].innerHTML = doc.getElementsByClassName("show")[0].innerHTML
+                        }
+                        document.title = doc.title
+                        document.querySelector("meta[name=\"ptype\"]").setAttribute("content", doc.querySelector("meta[name=\"ptype\"]").getAttribute("content"))
+                    }).catch(function(e) {console.log(e);window.location.href == A[i].getAttribute("href")})
+                }).catch(function(e) {console.log(e);window.location.href = A[i].getAttribute("href")})
+            }
+            history.pushState({}, "", A[i].getAttribute("href"))
+            let e2 = new CustomEvent("DOMContentLoaded",{});
+            document.dispatchEvent(e2),
+            window.dispatchEvent(e2)
+            return false
+        }
+    }
+})
+
+function showAnimation() {
+    if (window.screen.width <= 645) {
+        document.querySelector(".show>.animation").style.display = "none";
         if (document.querySelector(".show>.first>.content").getBoundingClientRect().top < document.documentElement.clientHeight) {
             document.querySelector(".show>.first>.content>.screenshot").style.transition = "transform 2s"
             document.querySelector(".show>.first>.content>.screenshot").style.transform = "translate(0px,0px)"
@@ -62,7 +125,10 @@ document.addEventListener('scroll', function (event) {
         }
         document.querySelector(".show>.animation").style.background = "#fff"
     }
-})
+}
+
+// 滚动
+document.addEventListener('scroll', showAnimation)
 function lazyload() {
     var viewHeight = document.documentElement.clientHeight;
     var eles = document.querySelectorAll('img[lazyload]');
@@ -85,3 +151,5 @@ function lazyload() {
         }
     })
 }
+
+document.addEventListener("resize", showAnimation)

@@ -1,270 +1,321 @@
 :root,
 body {
-    margin: 0;
+	margin: 0;
 }
 
 * {
-    transition: all 0.5s;
+	transition: all .5s;
 }
 
 body>div.header {
-    border-bottom: .1px solid #e6e6e6;
-    background: #377DFF;
-    width: 100%;
-    height: 70px;
-    z-index: 99999999999999;
-    position: fixed;
-    top: 0;
-    left: 0;
+	border-bottom: 0.1px solid #e6e6e6;
+	background: #377dff;
+	width: 100%;
+	height: 70px;
+	z-index: 99999999999999;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+body>div.header .right {
+	position: absolute;
+	right: 0;
+	top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+body>div.header .right a {
+	color: #fff;
+	padding: 0 15px;
+    text-decoration: none
 }
 
 body>.main {
-    width: 100%;
-    padding-bottom: 70px;
+	width: 100%;
+	padding-bottom: 70px;
 }
 
-body>.main>.slogan {
-    z-index: 100;
-    width: 100%;
-    height: 500px;
-    background: #377DFF;
-    position: relative;
+body .main .slogan {
+	z-index: 100;
+	width: 100%;
+	height: 500px;
+	background: #377dff;
+	position: relative;
+}
 
-    .main {
-        user-select: none;
-        margin-top: 70px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: calc(100% - 70px);
+body .main .slogan .main {
+	user-select: none;
+	margin-top: 70px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: calc(100% - 70px);
+}
 
-        .icon {
-            max-height: calc(100% - 100px);
-            width: calc(100% - 450px);
-        }
+body .main .slogan .main .icon {
+	max-height: calc(100% - 100px);
+	width: calc(100% - 450px);
+}
 
-        .text {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+body .main .slogan .main .text {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
-            .title {
-                color: #fff;
-            }
+body .main .slogan .main .text .title {
+	color: #fff;
+}
 
-            .btn {
-                padding: 10px;
-                display: block;
-                background-color: #fff;
-                border-radius: 5px;
-                color: #377DFF;
-                text-decoration: none;
-            }
-        }
-    }
+body .main .slogan .main .text .btn {
+	padding: 10px;
+	display: block;
+	background-color: #fff;
+	border-radius: 5px;
+	color: #377dff;
+	text-decoration: none;
 }
 
 .main>.slogan>._cards>.cards {
-    position: absolute;
-    bottom: -100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    height: 150px;
-    width: calc(100% - 80px);
-    user-select: none;
-    margin: 0 40px;
+	position: absolute;
+	bottom: -100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+	height: 150px;
+	width: calc(100% - 80px);
+	user-select: none;
+	margin: 0 40px;
+}
 
+.main>.slogan>._cards>.cards .card {
+	display: flex;
+	padding: 10px;
+	height: calc(100% - 20px);
+	width: calc(100% / 3 - 70px);
+	background-color: #fff;
+	border-radius: 10px;
+	align-items: center;
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.2);
+	overflow: hidden;
+}
 
-    .card {
-        display: flex;
-        padding: 10px;
-        height: calc(100% - 20px);
-        width: calc(100% / 3 - 70px);
-        background-color: #fff;
-        border-radius: 10px;
-        align-items: center;
-        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.20);
-        overflow: hidden;
+.main>.slogan>._cards>.cards .card .left {
+	margin-bottom: 5px;
+	width: 50px;
+	height: 50px;
+	padding: 10px;
+}
 
-        .left {
-            margin-bottom: 5px;
-            width: 50px;
-            height: 50px;
-            padding: 10px;
-        }
+.main>.slogan>._cards>.cards .card .right {
+	display: flex;
+	flex-direction: column;
+	width: calc(100% - 60px);
+}
 
-        .right {
-            display: flex;
-            flex-direction: column;
-            width: calc(100% - 60px);
+.main>.slogan>._cards>.cards .card .right .title {
+	color: #000;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: normal;
+}
 
-            .title {
-                color: #000;
-                font-size: 20px;
-                font-weight: 700;
-                line-height: normal;
-            }
-
-            .des {
-                color: #7F7F7F;
-                font-size: 13px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;
-            }
-        }
-    }
+.main>.slogan>._cards>.cards .card .right .des {
+	color: #7f7f7f;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
 }
 
 .main>.show {
-    width: 100%;
+	width: 100%;
+}
 
-    .first,
-    .animation,
-    .second {
-        min-height: 890px;
-        background: #F8FAFF;
-        width: 100%;
-        height: calc(100vh + 200px);
-        position: relative;
-        max-height: 1024px;
+.main>.show .first,
+.main>.show .animation,
+.main>.show .second {
+	min-height: 890px;
+	background: #f8faff;
+	width: 100%;
+	height: calc(100vh + 200px);
+	position: relative;
+	max-height: 1024px;
+}
 
-        .content {
-            overflow: hidden;
-            min-height: 690px;
-            user-select: none;
-            width: 100%;
-            height: calc(100vh - 70px);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            position: absolute;
-            bottom: 0;
+.main>.show .first .content,
+.main>.show .animation .content,
+.main>.show .second .content {
+	overflow: hidden;
+	min-height: 690px;
+	user-select: none;
+	width: 100%;
+	height: calc(100vh - 70px);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+}
 
+.main>.show .first .content .logo,
+.main>.show .animation .content .logo,
+.main>.show .second .content .logo {
+	margin-top: 30px;
+	width: 80px;
+}
 
+.main>.show .first .content .title,
+.main>.show .animation .content .title,
+.main>.show .second .content .title {
+	margin: 5px 0;
+	color: #000;
+	text-align: center;
+	font-family: Istok Web;
+	font-size: 50px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
 
-            .logo {
-                margin-top: 30px;
-                width: 80px;
-            }
+.main>.show .first .content .introduce,
+.main>.show .animation .content .introduce,
+.main>.show .second .content .introduce {
+	color: #000;
+	text-align: center;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
 
-            .title {
-                margin: 5px 0;
-                color: #000;
-                text-align: center;
-                font-family: Istok Web;
-                font-size: 50px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;
-            }
+.main>.show .first .content .screenshot,
+.main>.show .animation .content .screenshot,
+.main>.show .second .content .screenshot {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
 
-            .introduce {
-                color: #000;
-                text-align: center;
-                font-size: 15px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;
-            }
+.main>.show .first .content .screenshot .emulation,
+.main>.show .animation .content .screenshot .emulation,
+.main>.show .second .content .screenshot .emulation {
+	margin-top: 90px;
+	display: flex;
+	padding-top: 40px;
+	height: 320px;
+	border-radius: 15px 15px 0px 0px;
+	background: #fff;
+	box-shadow: 0px -5px 4px 0px rgba(0,0,0,0.25);
+	justify-content: center;
+	position: relative;
+	max-width: 720px;
+	width: calc(100% - 40px);
+}
 
-            .screenshot {
-                display: flex;
-                justify-content: center;
-                width: 100%;
+.main>.show .first .content .screenshot .emulation .camera,
+.main>.show .animation .content .screenshot .emulation .camera,
+.main>.show .second .content .screenshot .emulation .camera {
+	border-radius: 50%;
+	padding: 10px;
+	background-color: #000;
+	top: 10px;
+	position: absolute;
+}
 
-                .emulation {
-                    margin-top: 90px;
-                    display: flex;
-                    padding-top: 40px;
-                    height: 320px;
-                    border-radius: 15px 15px 0px 0px;
-                    background: #FFF;
-                    box-shadow: 0px -5px 4px 0px rgba(0, 0, 0, 0.25);
-                    justify-content: center;
-                    position: relative;
-                    max-width: 720px;
-                    width: calc(100% - 40px);
+.main>.show .first .content .screenshot .emulation .screenshot,
+.main>.show .animation .content .screenshot .emulation .screenshot,
+.main>.show .second .content .screenshot .emulation .screenshot {
+	width: calc(100% - 40px);
+	height: 320px;
+}
 
-                    .camera {
-                        border-radius: 50%;
-                        padding: 10px;
-                        background-color: #000;
-                        top: 10px;
-                        position: absolute;
-                    }
+.main>.show .animation,
+.main>.show .second {
+	transition: all 1s;
+	width: 100%;
+	z-index: 999;
+	height: calc(100vh - 70px);
+	position: fixed;
+	min-height: 0;
+	top: 70px;
+	left: 0;
+}
 
-                    .screenshot {
-                        width: calc(100% - 40px);
-                        height: 320px;
-                    }
-                }
-            }
-        }
-    }
+.main>.show .animation .content,
+.main>.show .second .content {
+	height: 100%;
+}
 
-    .animation,
-    .second {
-        transition: all 1s;
-        width: 100%;
-        z-index: 999;
-        height: calc(100vh - 70px);
-        position: fixed;
-        min-height: 0;
-        top: 70px;
-        left: 0;
-
-        .content {
-            height: 100%;
-        }
-    }
-
-    .second {
-        transition: all 0s;
-        position: relative;
-        margin-top: -70px;
-        background: #fff;
-        z-index: 9;
-    }
+.main>.show .second {
+	transition: all 0s;
+	position: relative;
+	margin-top: -70px;
+	background: #fff;
+	z-index: 9;
 }
 
 .footer {
-    width: 100%;
-    min-height: 150px;
-    padding: 30px;
-    background-color: #ffb101;
+	width: 100%;
+	min-height: 150px;
+	padding: 30px;
+	background-color: #ffb101;
 }
 
 @media (max-width: 645px) {
-    body>.main>.slogan {
-        .main {
-            justify-content: center;
-            flex-direction: column-reverse;
+	body>.main>.slogan .main {
+		justify-content: center;
+		flex-direction: column-reverse;
+	}
 
-            .text .title {
-                text-align: center;
-            }
+	body>.main>.slogan .main .text .title {
+		text-align: center;
+	}
 
-            .icon {
-                width: calc(100% - 350px);
-                margin-top: 20px;
-                min-width: 250px;
-            }
-        }
+	body>.main>.slogan .main .icon {
+		width: calc(100% - 350px);
+		margin-top: 20px;
+		min-width: 250px;
+	}
 
-        ._cards { 
-            .cards {
-                width: calc(300vw - 300px);
-                transform: translateX(0px);
-                margin: 0 50px;
+	body>.main>.slogan ._cards .cards {
+		width: calc(300vw - 300px);
+		transform: translateX(0px);
+		margin: 0 50px;
+	}
 
-                .card {
-                    width: calc(100vw - 100px);
-                }
-            }
-        }
+	body>.main>.slogan ._cards .cards .card {
+		width: calc(100vw - 100px);
+	}
+}
+
+body .main .headimg {
+    z-index: 100;
+    width: 100%;
+    height: 250px;
+    background: #377dff;
+    position: relative;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-top: 70px;
+}
+
+body .main .post {
+    width: calc(100% - 40px);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    background: #f8faff;
+    min-height: calc(100vh - 320px);
+    * {
+        max-width: 840px;
     }
 }
