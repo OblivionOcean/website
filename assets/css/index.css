@@ -64,11 +64,6 @@ main .hero {
             border-radius: 2px;
             cursor: pointer;
             transition: 0.3s;
-
-            &:hover {
-                background-color: #151719;
-                color: #fff;
-            }
         }
     }
 
